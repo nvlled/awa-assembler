@@ -1,0 +1,30 @@
+
+// a program that counts down from 10 to 1
+
+blo 10
+
+lbl 'a'
+
+dpl
+blo 42
+4dd
+blo ' '
+prn
+prn
+
+
+blo 1
+eql
+jmp 'b'
+
+pop // remove 0
+
+blo 1
+sbm 1
+sub
+
+jmp 'a'
+
+
+lbl 'b'
+trm
