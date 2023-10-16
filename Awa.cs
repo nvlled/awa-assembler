@@ -1,6 +1,10 @@
 
 using System.Text;
 
+
+// See file AWA5.0 Specs.pdf for reference,
+// downloaded from https://github.com/TempTempai/AWA5.0
+
 public static class Awa
 {
     static char[] chars = new char[] {
@@ -45,6 +49,7 @@ public static class Awa
             case "eql":
             case "lss":
             case "gr8":
+            case "dbg":
             case "trm":
                 if (strArg is not null)
                 {
@@ -103,7 +108,8 @@ public static class Awa
             case "eql": return 0x12;
             case "lss": return 0x13;
             case "gr8": return 0x14;
-            case "trm": return 0x14;
+            case "dbg": return 0x1e;
+            case "trm": return 0x1f;
             default: return -1;
         }
 
