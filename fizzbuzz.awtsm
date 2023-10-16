@@ -1,0 +1,190 @@
+#define check_mod_15 1
+#define check_mod_5 2
+#define check_mod_3 3
+#define print_fissbuss 4
+#define print_buss 5
+#define print_fiss 6
+#define print_number 7
+#define post_loop 8
+#define start_loop 9
+#define end_loop 10
+
+// ---------------------
+// init
+
+blo ';'
+blo 'm'
+blo 'u'
+blo 'n'
+blo ' '
+blo 'r'
+blo 'e'
+blo 't'
+blo 'n'
+blo 'e'
+srn 11
+prn
+
+// count up to N
+//blo 100
+r3d
+
+// counter
+blo 1
+//dbg
+// ---------------------
+blo ' '
+blo '.'
+blo '.'
+blo ' '
+srn 4
+prn
+
+
+lbl $start_loop
+
+// -------------------
+lbl $check_mod_15
+dpl
+blo 15
+sbm 1
+div
+pop // pop div bubble
+pop // pop quotient
+// stack: [remainder, counter, N, ...]
+
+blo 0 
+eql
+// -------------------
+jmp $print_fissbuss
+jmp $check_mod_5
+
+// -------------------
+lbl $check_mod_5
+pop // remove 0 from eql
+pop // remainder
+dpl
+blo 5
+sbm 1
+div
+pop // pop div bubble
+pop // pop quotient
+// stack: [remainder, counter, N, ...]
+
+blo 0 
+eql
+// -------------------
+jmp $print_buss
+jmp $check_mod_3
+
+
+// -------------------
+lbl $check_mod_3
+pop // remove 0 from eql
+pop // remainder
+dpl
+blo 3
+sbm 1
+div
+pop // pop div bubble
+pop // pop quotient
+// stack: [remainder, counter, N, ...]
+
+blo 0 
+eql
+// -------------------
+jmp $print_fiss
+jmp $print_number
+
+// -------------------
+lbl $print_fissbuss
+pop // remove 0 from eql
+pop // remainder
+
+blo ' '
+blo 's'
+blo 's'
+blo 'u'
+blo 'b'
+blo 's'
+blo 's'
+blo 'i'
+blo 'f'
+srn 9
+prn
+// -------------------
+jmp $post_loop
+
+// -------------------
+lbl $print_buss
+pop // remove 0 from eql
+pop // remainder
+
+blo ' '
+blo 's'
+blo 's'
+blo 'u'
+blo 'b'
+srn 5
+prn
+// -------------------
+jmp $post_loop
+
+
+// -------------------
+lbl $print_fiss
+pop // remove 0 from eql
+pop // remainder
+
+blo ' '
+blo 's'
+blo 's'
+blo 'i'
+blo 'f'
+srn 5
+prn
+// -------------------
+jmp $post_loop
+
+
+// -------------------
+lbl $print_number
+pop // remove 0 from eql
+pop // remainder
+dpl
+pr1
+// -------------------
+jmp $post_loop
+
+
+lbl $post_loop
+
+blo 1
+4dd
+
+
+dpl
+sbm 2
+sbm 1
+dpl
+sbm 3
+
+eql
+jmp $end_loop
+
+pop
+pop
+jmp $start_loop
+
+
+// -------------------
+lbl $end_loop
+blo ' '
+blo 'd'
+blo 'n'
+blo 'e'
+srn 4
+prn
+trm
+
+

@@ -36,8 +36,6 @@ foreach (var line in lines)
     var command = fields[0];
     var strArg = fields.Length > 1 ? fields[1] : null;
 
-    Console.Error.WriteLine($"{command}:{strArg}");
-
     if (command.StartsWith("#"))
     {
         AwaExtension.RunDirective(env, command, strArg);
@@ -47,7 +45,6 @@ foreach (var line in lines)
         var value = Awa.Encode(command, strArg);
         Console.Write($" {value}");
     }
-
 }
 
 Console.WriteLine();
